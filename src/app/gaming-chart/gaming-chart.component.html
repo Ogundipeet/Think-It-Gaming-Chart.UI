@@ -1,0 +1,58 @@
+<div>
+  <div>
+    <h1>Top Games By Playtime!!!</h1>
+  </div>
+  <div>
+    <div class="row">
+      <div class="row"><h2>Get Top Games By User ID</h2></div>
+      <br />
+      <input #userId placeholder="Enter User ID" type="number" />
+      &nbsp;&nbsp;&nbsp;
+      <button (click)="getTotalPlaytimeByUserId(userId.valueAsNumber)">
+        Search
+      </button>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+      <div class="row"><h2>Get Top Games By Total Playtime</h2></div>
+      <br />
+      Between&nbsp;
+      <input #minPlaytime placeholder="Min Playtime" type="number" />&nbsp;
+      And&nbsp;
+      <input #maxPlaytime placeholder="Max Playtime" type="number" />
+      &nbsp;&nbsp;&nbsp;
+      <button
+        (click)="
+          getTopGameByTotalPlaytime(
+            minPlaytime.valueAsNumber,
+            maxPlaytime.valueAsNumber
+          )
+        "
+      >
+        Search
+      </button>
+    </div>
+    <br />
+    <table>
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Playtime</th>
+          <th>Genre</th>
+          <th>Platform(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let gm of service.list">
+          <td>{{ gm.game }}</td>
+          <td>{{ gm.playTime }}</td>
+          <td>{{ gm.genre }}</td>
+          <td>
+            <span *ngFor="let pltfm of gm.platforms">{{ pltfm}}. </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
